@@ -1,0 +1,106 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/sethherr/tranzito_utils
+    parallelism: 2
+    shell: /bin/bash --login
+    environment:
+      RAILS_ENV: test
+      RACK_ENV: test
+    docker:
+      - image: cimg/ruby:2.7.5-node
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: root
+          PSQL_PAGER: ""
+      - image: cimg/postgres:13.5-postgis
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: tranzito_utils_test
+          POSTGRES_PASSWORD: ""
+      - image: redis:4.0.9
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            # This branch if available
+            - v1-dep-{{ .Branch }}-
+            # Default branch if not
+            - v1-dep-main-
+            # Any branch if there are none on the default branch - this should be unnecessary if you have your default branch configured correctly
+            - v1-dep-
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
+      - run:
+          name: install system libraries
+          command: sudo apt-get update && sudo apt-get -y install postgresql-client
+      - run:
+          name: install bundler
+          command: |
+            gem install bundler
+      - run:
+          name: bundle gems
+          command: bundle install --path=vendor/bundle --jobs=4 --retry=3
+      - run:
+          name: Yarn Install
+          command: cd tranzito_utils_js && yarn install --cache-folder ~/.cache/yarn
+      - run:
+          name: Wait for PostgreSQL to start
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - save_cache:
+          key: v1-dep-{{ .Branch }}-{{ epoch }}
+          paths:
+            - ./vendor/bundle
+            - ~/.bundle
+            - public/assets
+            - tmp/cache/assets/sprockets
+            - ~/.cache/bundle
+      - run:
+          name: Ruby and JS lint check
+          command: bin/lint
+          environment:
+            LINT_TEST: "true"
+      - run:
+          name: Setup Database
+          command: |
+            cd spec/dummy
+            bundle exec rails db:create db:migrate db:schema:load
+      - run:
+          name: Rspec tests
+          command: |
+            mkdir -p test-results/rspec test-artifacts
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rspec --profile 10 \
+                              --color \
+                              --order random \
+                              --format RspecJunitFormatter \
+                              --out test-results/rspec/rspec.xml \
+                              --format progress \
+                              -- ${TESTFILES}
+      - run:
+          name: "Jest: Tests"
+          command: |
+            cd tranzito_utils_js
+            mkdir -p test-results/junit
+            yarn test --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: "test-results/junit/"
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-artifacts
+      - run:
+          name: Build Gem
+          command: |
+            export GIT_VERSION=$(git describe --always --tags --match "release-*")
+            echo "Building Gem from version ${GIT_VERSION}"
+            gem build tranzito_utils.gemspec | tee gem.build.output
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build

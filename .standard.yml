@@ -1,0 +1,8 @@
+fix: true
+parallel: true
+# format: progress
+
+ignore:
+  - "vendor/**/*"
+  - "public/**/*"
+  - "node_modules/**/*"

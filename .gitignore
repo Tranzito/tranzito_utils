@@ -1,0 +1,32 @@
+# For tranzito_utils gem
+doc/
+log/*.log
+pkg/
+tmp/
+.bundle/
+.DS_Store
+lib/.DS_Store
+app/.DS_Store
+.DS_Store
+/app/.DS_Store
+Gemfile.lock
+
+# For dummy app and specs under tranzito_utils gem
+spec/dummy/log/*.log
+spec/dummy/storage/
+spec/dummy/tmp/
+spec/dummy/public/assets
+
+# Local version control
+.tool-versions
+# Ignore test results
+test-results/
+test-artifacts/
+.bundle/
+vendor/
+
+# For Tranzito_utils_js npm package
+node_modules
+yarn.lock
+package-lock.json
+junit.xml
