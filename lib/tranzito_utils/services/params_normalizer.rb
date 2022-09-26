@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module TranzitoUtils
   module ParamsNormalizer
     def self.boolean(param = nil)
