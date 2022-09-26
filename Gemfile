@@ -5,13 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 group :development, :test do
+  gem "pg" # database
   gem "standard" # Ruby linter
   gem "rspec-rails" # Test framework
   gem "rspec_junit_formatter" # For circle ci
   gem "rails-controller-testing"
-end
-
-group :test do
-  gem "pg"
-  gem "hamlit"
+  gem "hamlit" # You need to have haml rendering in your app.
 end
