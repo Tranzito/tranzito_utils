@@ -13,3 +13,7 @@ default: &default
 test:
   <<: *default
   database: tranzito_utils_test
+
+development:
+  <<: *default
+  database: tranzito_utils_development
