@@ -1,16 +1,19 @@
-# TranzitoUtils
+# TranzitoUtils [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Tranzito/tranzito_utils/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Tranzito/tranzito_utils/tree/main)
 
-Tranzito_utils is a ruby gem which contains several modules mainly containing helpers, concerns and services. These are some of the main modules in the gem
+`tranzito_utils` is a ruby gem containing these Rails helpers, concerns and services.
 
-- `TimeParser`
-- `SortableTable`
-- `SetPeriod`
-- `GraphingHelper`
-- `SortableHelper`
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| `SetPeriod` | Controller Concern | Time period selection and browsing |
+| `SortableTable` | Controller Concern | Sort column and direction  |
+| `TimeParser` | Service | Parse time strings into activerecord time objects |
+| `ParamsNormalizer` | Service | Normalize truthy and falsey strings |
+| `GraphingHelper` | Helper | Graphing helper for [chartkick](https://chartkick.com/) charts |
+| `SortableHelper` | Helper | Sort table headers |
 
 # Installation
 
-## tranzito_utils(gem)
+## tranzito_utils (gem)
 Install the gem by adding this line to your application's Gemfile:
 
 ```
@@ -82,7 +85,11 @@ Same for GraphingHelper, if you want to use its methods then you need to add tha
 include TranzitoUtils::GraphingHelper
 ```
 
-## tranzito_utils_js(npm)
+#### ParamsNormalizer
+
+Params normalizer uses activerecord to parse strings into booleans.
+
+## tranzito_utils_js (npm)
 You also need to add this NPM package in order to use the gem without any issue. You can install it using `yarn` or `npm`.
 
 For yarn
@@ -118,3 +125,13 @@ As for `PeriodSelector`, you can use it by initializing like this
 `#timeSelectionBtnGroup` is being used in the partial in `tranzito_utils` gem.
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+
+## Testing
+
+To setup testing, you have to create the database:
+
+```shell
+cd spec/dummy
+RAILS_ENV=test bundle exec rails db:create db:schema:load db:migrate
+```

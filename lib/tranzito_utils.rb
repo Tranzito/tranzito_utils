@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "tranzito_utils/version"
+
 module TranzitoUtils
   DEFAULT = {
     earliest_period_time: Time.at(1637388000),
@@ -15,5 +17,5 @@ require "tranzito_utils/concerns/sortable_table"
 require "tranzito_utils/helpers/graphing_helper"
 require "tranzito_utils/helpers/sortable_helper"
 require "tranzito_utils/services/time_parser"
-require "tranzito_utils/version"
+require "tranzito_utils/services/params_normalizer"
 require "tranzito_utils/gem"

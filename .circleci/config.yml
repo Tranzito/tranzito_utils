@@ -67,7 +67,7 @@ jobs:
           name: Setup Database
           command: |
             cd spec/dummy
-            bundle exec rails db:create db:migrate db:schema:load
+            bundle exec rails db:create db:schema:load
       - run:
           name: Rspec tests
           command: |
