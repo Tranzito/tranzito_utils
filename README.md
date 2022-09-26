@@ -1,4 +1,4 @@
-# TranzitoUtils
+# TranzitoUtils [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Tranzito/tranzito_utils/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Tranzito/tranzito_utils/tree/main)
 
 `tranzito_utils` is a ruby gem containing these Rails helpers, concerns and services.
 
