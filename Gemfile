@@ -9,6 +9,7 @@ group :development, :test do
   gem "rspec-rails" # Test framework
   gem "rspec_junit_formatter" # For circle ci
   gem "rails-controller-testing"
+  gem "hamlit" # You need to have haml rendering in your app.
 end
 
 group :test do
