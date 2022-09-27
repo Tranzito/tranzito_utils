@@ -22,18 +22,17 @@
   },
   "standard": {
     "globals": [
-      "$",
       "_",
       "alert",
       "confirm",
       "fetch",
       "jQuery",
-      "localStorage"
+      "localStorage",
+      "location",
+      "time"
     ],
     "ignore": [
-      "/public/*",
-      "dist/period_selector.js",
-      "dist/time_parser.js"
+      "/public/*"
     ],
     "env": [
       "jest"

@@ -117,7 +117,7 @@ window.timeParser.localize()
 
 As for `PeriodSelector`, you can use it by initializing like this
 ```
-  if ($('#timeSelectionBtnGroup').length) {
+  if (document.getElementById('timeSelectionBtnGroup')) {
     const periodSelector = new PeriodSelector()
     periodSelector.init()
   }

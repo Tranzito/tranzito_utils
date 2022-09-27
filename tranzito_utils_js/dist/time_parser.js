@@ -22,7 +22,7 @@ import moment from 'moment-timezone'
 // componentDidUpdate() { window.timeParser.localize() }
 
 class TimeParser {
-  constructor() {
+  constructor () {
     if (!window.localTimezone) {
       window.localTimezone = moment.tz.guess()
     }
@@ -37,17 +37,17 @@ class TimeParser {
   }
 
   // Directly render localized time elements. Returns an HTML string
-  localizedTimeHtml(
+  localizedTimeHtml (
     timeString,
     { singleFormat, preciseTime, includeSeconds, withPreposition }
   ) {
     const time = this.parse(String(timeString).trim())
 
     if (time === null) {
-      return `<span></span>`
+      return '<span></span>'
     }
     // If singleFormat was passed as true, override with that, otherwise default to window format
-    let variableFormat = singleFormat ? false : !this.singleFormat
+    const variableFormat = singleFormat ? false : !this.singleFormat
 
     return `<span title="${this.preciseTimeSeconds(
       time
@@ -62,7 +62,7 @@ class TimeParser {
 
   // Update all the times (and timezones) on the page
   // Removes the classes that trigger localization, so it doesn't reupdate the times
-  localize() {
+  localize () {
     // Write times
     Array.from(document.getElementsByClassName('convertTime')).forEach(el =>
       this.writeTime(el)
@@ -85,7 +85,7 @@ class TimeParser {
 
   // Update an element with the current time.
   // Requires the element have parseable text of a time, pulls properties from the element classes
-  writeTime(el) {
+  writeTime (el) {
     const text = el.textContent.trim()
     const time = this.parse(text)
     // So running this again doesn't reapply to this element
@@ -110,7 +110,7 @@ class TimeParser {
 
   // If we're display time with the hour, we have different formats based on whether we include seconds
   // this manages that functionality
-  hourFormat(time, baseTimeFormat, includeSeconds, withPreposition) {
+  hourFormat (time, baseTimeFormat, includeSeconds, withPreposition) {
     const prefix = withPreposition ? ' at ' : ''
     if (includeSeconds) {
       return `${prefix}${time.format(baseTimeFormat)}:<small>${time.format(
@@ -121,7 +121,7 @@ class TimeParser {
     }
   }
 
-  localizedDateText(
+  localizedDateText (
     time,
     singleFormat,
     preciseTime,
@@ -152,7 +152,7 @@ class TimeParser {
     // If it's preciseTime (or preciseTimeSeconds), always show the hours and mins
     if (preciseTime || includeSeconds) {
       // Make the time less-strong, otherwise it's hard to separate from the date
-      let hourEl = `<span class="less-strong">${this.hourFormat(
+      const hourEl = `<span class="less-strong">${this.hourFormat(
         time,
         'h:mm',
         includeSeconds,
@@ -177,15 +177,15 @@ class TimeParser {
     }
   }
 
-  preciseTimeSeconds(time) {
+  preciseTimeSeconds (time) {
     return time.format('YYYY-MM-DD h:mm:ss a')
   }
 
-  setHiddenTimezoneFields(el) {
+  setHiddenTimezoneFields (el) {
     el.value = this.localTimezone
   }
 
-  parse(text) {
+  parse (text) {
     // If time is only a number, parse as a timestamp
     // Otherwise, parse as ISO_8601 which is the default time string
     if (/^\d+$/.test(text)) {
@@ -198,7 +198,7 @@ class TimeParser {
     }
   }
 
-  writeTimezone(el) {
+  writeTimezone (el) {
     el.textContent = moment().format('z')
     el.classList.remove('convertTimezone')
   }
