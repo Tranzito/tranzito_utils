@@ -12,9 +12,7 @@ Gem::Specification.new do |spec|
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/Tranzito/tranzito_utils"
 
-  spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    ["{app,config,lib}/**/*", "Rakefile", "README.md", "MIT-LICENSE"]
-  end
+  spec.files = [*Dir.glob("{app,config,lib}/**/*").reject { |f| File.directory?(f) }, "Rakefile", "README.md", "MIT-LICENSE"]
 
   spec.add_dependency "rails", ">= 6.0"
 end
