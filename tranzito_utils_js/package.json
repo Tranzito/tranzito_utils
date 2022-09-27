@@ -1,9 +1,13 @@
 {
   "name": "tranzito_utils_js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "NPM package for managing the JavaScript for tranzito_utils gem",
   "main": "index.js",
-  "author": "Tranzito",
+  "author": "Hafiz Ahmed <hafizahmed.tx@gmail.com> (https://www.npmjs.com/~hafiz-ahmed)",
+  "contributors": [
+    "Will Barrett <barrett.william@gmail.com> (https://www.npmjs.com/~willbarrett)",
+    "Seth <seth.william.herr@gmail.com> (https://www.npmjs.com/~sethherr)"
+  ],
   "license": "ISC",
   "scripts": {
     "test": "jest",

@@ -3,7 +3,7 @@ require_relative "lib/tranzito_utils/version"
 Gem::Specification.new do |spec|
   spec.name = "tranzito_utils"
   spec.version = TranzitoUtils::VERSION
-  spec.authors = ["willbarrett", "sethherr", "hafiz-ahmed"]
+  spec.authors = ["willbarrettdev", "sethherr", "hafiz-ahmed"]
   spec.email = ["info@tranzito.org"]
   spec.homepage = "https://github.com/Tranzito/tranzito_utils"
   spec.summary = "Ruby gem contain several modules mainly containing the helpers, concerns and services for personal use by Tranzito"
