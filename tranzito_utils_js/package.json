@@ -1,6 +1,6 @@
 {
   "name": "tranzito_utils_js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NPM package for managing the JavaScript for tranzito_utils gem",
   "main": "index.js",
   "author": "Hafiz Ahmed <hafizahmed.tx@gmail.com> (https://www.npmjs.com/~hafiz-ahmed)",
