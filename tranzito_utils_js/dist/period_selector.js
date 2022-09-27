@@ -60,7 +60,7 @@ class PeriodSelector {
     const self = this
     document.querySelectorAll('#timeSelectionBtnGroup .btn').forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        let eventTarget = e.target
+        let eventTarget = e.currentTarget
         let selectedPeriod = eventTarget.attributes['data-period']?.value
         // Sometimes, the target isn't the button, it's something inside the button. In that case, find the correct period
         if (typeof selectedPeriod === 'undefined') {
