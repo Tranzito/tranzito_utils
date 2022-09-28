@@ -57,10 +57,7 @@ module TranzitoUtils
         @start_time = Time.current
         @end_time = Time.current.beginning_of_day + 1.week
       when "all"
-        @start_time = TranzitoUtils::DEFAULT[:earliest_period_time]
-      else
-        @period = default_period
-        @start_time = TranzitoUtils::DEFAULT[:earliest_period_time]
+        @start_time = earliest_period_date
       end
       @end_time ||= latest_period_date
     end
@@ -92,6 +89,10 @@ module TranzitoUtils
       end
 
       @timezone ||= TranzitoUtils::DEFAULT[:time_zone]
+    end
+
+    def earliest_period_date
+      TranzitoUtils::DEFAULT[:earliest_period_time]
     end
   end
 end
