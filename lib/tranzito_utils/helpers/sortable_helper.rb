@@ -2,7 +2,7 @@
 
 module TranzitoUtils
   module SortableHelper
-    DEFAULT_SEARCH_KEYS = [:direction, :sort, :user_id, :period, :start_time, :end_time, :per_page].freeze
+    DEFAULT_SEARCH_KEYS = %i[direction sort period start_time end_time per_page user_id query].freeze
 
     def sortable(column, title = nil, html_options = {})
       if title.is_a?(Hash) # If title is a hash, it wasn't passed

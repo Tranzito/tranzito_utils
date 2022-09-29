@@ -36,13 +36,13 @@ RSpec.describe TranzitoUtils::SortableHelper, type: :helper do
       end
     end
     context "direction, sort, search param, user_id" do
-      let(:passed_params) { {direction: "asc", sort: "stolen", party: "long", search_stuff: "xxx", user_id: 21} }
-      let(:target) { {direction: "asc", sort: "stolen", search_stuff: "xxx", user_id: 21} }
+      let(:passed_params) { {direction: "asc", sort: "stolen", party: "long", search_stuff: "xxx", user_id: 21, query: "something"} }
+      let(:target) { {direction: "asc", sort: "stolen", search_stuff: "xxx", user_id: 21, query: "something"} }
       it "returns an empty hash" do
         expect(sortable_search_params.to_unsafe_h).to eq(target.as_json)
         expect(sortable_search_params?).to be_truthy
         expect(sortable_search_params?(except: [:user_id])).to be_truthy
-        expect(sortable_search_params?(except: [:search_stuff, :user_id])).to be_falsey
+        expect(sortable_search_params?(except: [:search_stuff, :user_id, :query])).to be_falsey
       end
     end
   end
