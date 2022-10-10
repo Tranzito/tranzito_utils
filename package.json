@@ -2,18 +2,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "lint": "standard --fix",
     "build:css": "sass ./app/assets/stylesheets/tranzito_utils.scss ./app/assets/builds/tranzito_utils-compiled.css --no-source-map --load-path=node_modules"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "bootstrap": "5.2.2",
-    "sass": "^1.55.0",
-    "standard": "^16.0.4"
-  },
-  "standard": {
-    "ignore": [
-      "/public/*"
-    ]
+    "sass": "^1.55.0"
   }
 }

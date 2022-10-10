@@ -1,3 +1,3 @@
 module ApplicationHelper
-  include TranzitoUtils::SortableHelper
+  include TranzitoUtils::Helpers
 end

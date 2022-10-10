@@ -3,7 +3,7 @@
   %head
     %meta{ content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %meta{ name:"viewport", content:"width=device-width, initial-scale=1, shrink-to-fit=no" }
-    %title Tranzito Utils
+    %title= page_title # page_title is defined in Helpers
     = csrf_meta_tags
     = csp_meta_tag
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">

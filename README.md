@@ -7,7 +7,7 @@
 | `SetPeriod` | Controller Concern | Time period selection and browsing |
 | `SortableTable` | Controller Concern | Sort column and direction  |
 | `TimeParser` | Service | Parse time strings into activerecord time objects |
-| `ParamsNormalizer` | Service | Normalize truthy and falsey strings |
+| `Normalize` | Service | Normalize truthy and falsey strings |
 | `GraphingHelper` | Helper | Graphing helper for [chartkick](https://chartkick.com/) charts |
 | `SortableHelper` | Helper | Sort table headers |
 
@@ -69,26 +69,13 @@ render partial: "/tranzito_utils/period_select"
 
 This will include the period_select view for filtering.
 
-### SortableHelper
+### Helpers
 
-For SortableHelper, you need to add that line into your `application_helper.rb` file.
-
-```
-include TranzitoUtils::SortableHelper
-```
-
-### GraphingHelper
-
-Same for GraphingHelper, if you want to use its methods then you need to add that line into your `application_helper.rb` file.
+For gems helpers, you need to add this into your `application_helper.rb` file.
 
 ```
-include TranzitoUtils::GraphingHelper
+include TranzitoUtils::Helpers
 ```
-
-#### ParamsNormalizer
-
-Params normalizer uses activerecord to parse strings into booleans.
-
 ### Assets
 
 To include the styles from the gem you need to add this into your application.scss, this will include the compiled CSS into your application.
@@ -96,7 +83,6 @@ To include the styles from the gem you need to add this into your application.sc
 ```
 @import url('/tranzito_utils-compiled.css')
 ```
-
 ## tranzito_utils_js (npm)
 You also need to add this NPM package in order to use the gem without any issue. You can install it using `yarn` or `npm`.
 
