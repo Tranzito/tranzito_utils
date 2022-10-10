@@ -1,0 +1,33 @@
+$green: #82cb39;
+$green-primary: #92d149;
+$green-secondary: #b8d54b;
+$green-darker: #208439; // This is the darker green from the logo
+$green-new: #2c8a43; // this green is different and in the figma, probably needs a better name though.
+$eggshell-white: #f8f8f8;
+$grey: #e9e9e9;
+
+$development-env: #9400d3;
+
+$theme-blue: rgb(44, 142, 194);
+
+$btn-border-radius: 2px;
+$btn-border-radius-lg: $btn-border-radius;
+
+$theme-colors: (
+  'success': $green-primary,
+  'info': $green-secondary,
+  'secondary': #939393
+);
+
+$colors: (
+  'green': $green
+);
+
+$text-color: #212529;
+
+// Because sometimes it's nice to use the original color
+$bootstrap-info: #17a2b8;
+
+// Admin revised background
+$admin-revised-background: #f7f7f7;
+$admin-background-box-border: rgba(102, 102, 102, 0.16);

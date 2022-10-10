@@ -89,6 +89,14 @@ include TranzitoUtils::GraphingHelper
 
 Params normalizer uses activerecord to parse strings into booleans.
 
+### Assets
+
+To include the styles from the gem you need to add this into your application.scss, this will include the compiled CSS into your application.
+
+```
+@import url('/tranzito_utils-compiled.css')
+```
+
 ## tranzito_utils_js (npm)
 You also need to add this NPM package in order to use the gem without any issue. You can install it using `yarn` or `npm`.
 
@@ -126,7 +134,9 @@ As for `PeriodSelector`, you can use it by initializing like this
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
+## Development
 
+To compile the updated styles run this command `yarn build:css`
 ## Testing
 
 To setup testing, you have to create the database:
