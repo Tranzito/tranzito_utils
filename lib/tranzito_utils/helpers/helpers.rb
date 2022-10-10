@@ -5,6 +5,10 @@ module TranzitoUtils
     include TranzitoUtils::SortableHelper
     include TranzitoUtils::GraphingHelper
 
+    def controller_namespace
+      @controller_namespace ||= self.class.module_parent.name != "Object" ? self.class.module_parent.name.downcase : nil
+    end
+
     def in_admin?
       controller_namespace == "admin"
     end
