@@ -11,7 +11,7 @@ module TranzitoUtils
 
     def page_title
       return @page_title if defined?(@page_title)
-      prefix = (in_admin? ? "🧰" : TranzitoUtils::DEFAULT[:title_prefix])
+      prefix = (in_admin? ? "🧰" : TranzitoUtils::DEFAULT[:application_display_name])
       return "#{prefix} #{@prefixed_page_title}" if @prefixed_page_title.present?
       [
         prefix,

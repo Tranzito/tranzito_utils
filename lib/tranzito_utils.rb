@@ -9,7 +9,7 @@ module TranzitoUtils
     latest_year: (Time.current.year + 100),
     additional_search_keys: [],
     time_zone: "",
-    title_prefix: ""
+    application_display_name: ""
   }
 end
 
