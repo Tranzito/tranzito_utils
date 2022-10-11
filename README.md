@@ -122,7 +122,12 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Development
 
-To compile the updated styles run this command `yarn build:css`
+To compile the updated styles run these command 
+```
+cd tranzito_utils_js
+yarn build:css
+```
+
 ## Testing
 
 To setup testing, you have to create the database:

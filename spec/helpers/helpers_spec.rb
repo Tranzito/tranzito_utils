@@ -18,6 +18,7 @@ RSpec.describe TranzitoUtils::Helpers, type: :helper do
       let(:controller_name) { "home" }
       let(:action_name) { "index" }
       it "returns default" do
+        allow(TranzitoUtils::DEFAULT).to receive(:[]).with(:title_prefix).and_return("Dummy")
         expect(helper.page_title).to eq "Dummy Home"
       end
     end

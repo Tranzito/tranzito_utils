@@ -3,6 +3,9 @@
 # Tranzito_utils initializer file
 # Customize only when you want to override the default values of tranzito_utils
 
+# You can update the page title prefix
+# TranzitoUtils::DEFAULT[:title_prefix] = "Name"
+
 # For TranzitoUtils::SetPeriod
 # You can update the time for earliest period for SetPeriod concern
 # TranzitoUtils::DEFAULT[:earliest_period_time] = Time.at(1637388000)

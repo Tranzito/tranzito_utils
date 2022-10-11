@@ -8,7 +8,8 @@ module TranzitoUtils
     earliest_year: 1900,
     latest_year: (Time.current.year + 100),
     additional_search_keys: [],
-    time_zone: ""
+    time_zone: "",
+    title_prefix: ""
   }
 end
 

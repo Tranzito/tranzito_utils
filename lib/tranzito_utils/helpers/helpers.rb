@@ -5,17 +5,13 @@ module TranzitoUtils
     include TranzitoUtils::SortableHelper
     include TranzitoUtils::GraphingHelper
 
-    def controller_namespace
-      @controller_namespace ||= self.class.module_parent.name != "Object" ? self.class.module_parent.name.downcase : nil
-    end
-
     def in_admin?
       controller_namespace == "admin"
     end
 
     def page_title
       return @page_title if defined?(@page_title)
-      prefix = (in_admin? ? "🧰" : Rails.application.engine_name.split("_").first.capitalize)
+      prefix = (in_admin? ? "🧰" : TranzitoUtils::DEFAULT[:title_prefix])
       return "#{prefix} #{@prefixed_page_title}" if @prefixed_page_title.present?
       [
         prefix,

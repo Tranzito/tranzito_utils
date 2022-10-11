@@ -5,6 +5,14 @@ module TranzitoUtils
     extend ActiveSupport::Concern
     PERIOD_TYPES = %w[hour day month year week all next_week next_month].freeze
 
+    included do
+      helper_method :controller_namespace
+    end
+
+    def controller_namespace
+      @controller_namespace ||= self.class.module_parent.name != "Object" ? self.class.module_parent.name.downcase : nil
+    end
+
     # For setting periods, particularly for graphing
     def set_period
       set_timezone
