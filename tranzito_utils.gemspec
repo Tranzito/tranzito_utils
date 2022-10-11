@@ -15,4 +15,5 @@ Gem::Specification.new do |spec|
   spec.files = [*Dir.glob("{app,config,lib}/**/*").reject { |f| File.directory?(f) }, "Rakefile", "README.md", "MIT-LICENSE"]
 
   spec.add_dependency "rails", ">= 6.0"
+  spec.add_dependency "coderay" # For pretty printing JSON
 end

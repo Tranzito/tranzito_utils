@@ -1,0 +1,73 @@
+.admin-header {
+  @extend .clearfix;
+  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #bdbdbd;
+
+  .btn {
+    @extend .header-sublink;
+  }
+
+  h1 {
+    font-size: 2rem;
+    @include media-breakpoint-up(md) {
+      .btn {
+        line-height: 2; // align floating buttons with the h1 tag
+      }
+    }
+  }
+  h1,
+  h2,
+  h3 {
+    @include media-breakpoint-down(sm) {
+      font-size: 1.5rem;
+    }
+  }
+  ul {
+    @extend .nav;
+    @extend .nav-pills;
+    @extend .justify-content-end;
+
+    // On small screens, make nav links align left
+    @include media-breakpoint-down(sm) {
+      justify-content: normal !important;
+    }
+  }
+  .nav-item {
+    @extend .small;
+    margin-left: 0.25rem;
+    a,
+    .button_to .btn {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+  .subtitle {
+    @extend .mt-4;
+    @extend .col-12;
+  }
+}
+
+.header-link {
+  color: $text-color;
+  text-decoration: underline;
+}
+
+// Because we want it to break on small screens
+.header-sublink {
+  @extend .float-md-right !optional;
+}
+
+// Because otherwise they overflow the right side of the screen
+.right-dropdown-overflown {
+  .dropdown-menu.show {
+    left: -75% !important;
+  }
+}
+
+.right-dropdown-overflown-lg {
+  @include media-breakpoint-up(lg) {
+    .dropdown-menu.show {
+      left: -75%;
+    }
+  }
+}
