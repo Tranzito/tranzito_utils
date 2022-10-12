@@ -76,6 +76,14 @@ For gems helpers, you need to add this into your `application_helper.rb` file.
 ```
 include TranzitoUtils::Helpers
 ```
+
+### Flash Message
+
+You can include the flash messages into your application by add it's partial in your layouts file.
+
+```
+render partial: "/tranzito_utils/flash_messages"
+```
 ### Assets
 
 To include the styles from the gem you need to add this into your application.scss, this will include the compiled CSS into your application.
