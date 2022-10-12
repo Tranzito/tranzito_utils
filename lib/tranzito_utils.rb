@@ -15,6 +15,7 @@ end
 
 require "tranzito_utils/concerns/set_period"
 require "tranzito_utils/concerns/sortable_table"
+require "tranzito_utils/helpers/admin_helper"
 require "tranzito_utils/helpers/graphing_helper"
 require "tranzito_utils/helpers/sortable_helper"
 require "tranzito_utils/helpers/helpers"
