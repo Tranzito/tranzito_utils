@@ -2,8 +2,9 @@
 
 module TranzitoUtils
   module Helpers
-    include TranzitoUtils::SortableHelper
+    include TranzitoUtils::AdminHelper
     include TranzitoUtils::GraphingHelper
+    include TranzitoUtils::SortableHelper
 
     def in_admin?
       controller_namespace == "admin"
