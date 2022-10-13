@@ -3,7 +3,7 @@
     - flash.each do |type, message|
       - next unless message.present?
       .alert.alert-dismissible.fade.show{class: "alert-#{type}"}
-        %button.btn-close{"data-bs-dismiss" => "alert", "aria-label" => "Close"}
+        %button.close{ 'data-dismiss' => 'alert' } ×
         = message
         - if flash[:link]
           %br
