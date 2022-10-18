@@ -565,7 +565,7 @@ pre code {
     max-width: 1140px;
   }
 }
-.row {
+.row, .custom-time-selection {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
@@ -10014,6 +10014,57 @@ input[type=radio] {
 
 .pagination-number {
   margin: 1rem 0 0;
+}
+
+#timeSelectionBtnGroup .period-select-standard {
+  transition: opacity 0.5s ease-in-out;
+}
+#timeSelectionBtnGroup.custom-period-selected .period-select-standard {
+  opacity: 0.6;
+}
+
+.custom-time-selection {
+  justify-content: flex-end;
+}
+.custom-time-selection .form-group {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
+  align-items: center;
+  margin-bottom: 0;
+}
+.custom-time-selection label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+.custom-time-selection .form-control {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.custom-time-selection .btn-success {
+  margin-right: 15px;
+}
+.custom-time-selection .end-time-control {
+  margin-left: 0;
+}
+@media (max-width: 767.98px) {
+  .custom-time-selection {
+    justify-content: flex-start;
+  }
+  .custom-time-selection .form-group {
+    margin-top: 8px;
+    flex: 0 0 75%;
+    max-width: 75%;
+    position: relative;
+    padding-left: 15px;
+  }
+  .custom-time-selection .end-time-control {
+    margin-left: 0;
+  }
 }
 
 .skip-user .user-cell,
