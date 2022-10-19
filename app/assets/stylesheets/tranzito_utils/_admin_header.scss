@@ -1,5 +1,5 @@
 .admin-header {
-  @extend .clearfix;
+  @include clearfix;
   margin-bottom: 1rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #bdbdbd;
@@ -24,9 +24,9 @@
     }
   }
   ul {
-    @extend .nav;
-    @extend .nav-pills;
-    @extend .justify-content-end;
+    // @extend .nav;
+    // @extend .nav-pills;
+    justify-content: flex-end;
 
     // On small screens, make nav links align left
     @include media-breakpoint-down(sm) {
@@ -42,8 +42,8 @@
     }
   }
   .subtitle {
-    @extend .mt-4;
-    @extend .col-12;
+    // @extend .col-12;
+    margin-top: 1.5rem !important;
   }
 }
 
@@ -54,7 +54,9 @@
 
 // Because we want it to break on small screens
 .header-sublink {
-  @extend .float-md-right !optional;
+  @include media-breakpoint-up(md) {
+    float: right;
+  }
 }
 
 // Because otherwise they overflow the right side of the screen

@@ -42,10 +42,10 @@
 }
 
 .table-list {
-  @extend .table;
-  @extend .table-striped;
-  @extend .table-bordered;
-  @extend .table-sm;
+  // @extend .table;
+  // @extend .table-striped;
+  // @extend .table-bordered;
+  // @extend .table-sm;
   tr td {
     line-height: 1.5;
     &:first-child {
