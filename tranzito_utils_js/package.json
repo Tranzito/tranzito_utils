@@ -1,6 +1,6 @@
 {
   "name": "tranzito_utils_js",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "NPM package for managing the JavaScript for tranzito_utils gem",
   "main": "index.js",
   "homepage": "https://github.com/Tranzito/tranzito_utils",
@@ -19,7 +19,7 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
     "@popperjs/core": "^2.11.6",
-    "bootstrap": "4.5.2",
+    "bootstrap": "4.5.3",
     "sass": "1.30.0"
   },
   "devDependencies": {
