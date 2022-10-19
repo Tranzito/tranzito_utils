@@ -1,14 +1,16 @@
-@import 'bootstrap/scss/bootstrap';
+// @import 'bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
 
-// Variables
-@import "tranzito_utils/variables";
+$text-color: #212529;
 
 // Utilities
-@import "tranzito_utils/utils";
-@import "tranzito_utils/pagination";
-@import "tranzito_utils/period_selection";
-@import "tranzito_utils/table_extensions";
+@import 'tranzito_utils/utils';
+@import 'tranzito_utils/pagination';
+@import 'tranzito_utils/period_selection';
+@import 'tranzito_utils/table_extensions';
 
 // Sections
-@import "tranzito_utils/admin_header";
-@import "tranzito_utils/alerts";
+@import 'tranzito_utils/admin_header';
+@import 'tranzito_utils/alerts';

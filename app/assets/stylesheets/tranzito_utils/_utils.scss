@@ -24,7 +24,7 @@
 .gray-link {
   a,
   & {
-    color: $gray-600 !important;
+    color: #6c757d !important; // bootstrap $gray-600
     opacity: 0.65;
     text-decoration: underline;
   }
@@ -36,8 +36,8 @@
 }
 
 label,
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
   cursor: pointer;
 }
 
