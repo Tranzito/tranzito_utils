@@ -4,8 +4,8 @@
   "description": "NPM package for managing the JavaScript for tranzito_utils gem",
   "main": "index.js",
   "homepage": "https://github.com/Tranzito/tranzito_utils",
-  "author": "Hafiz Ahmed <hafizahmed.tx@gmail.com> (https://www.npmjs.com/~hafiz-ahmed)",
   "contributors": [
+    "Hafiz Ahmed <hafizahmed.tx@gmail.com> (https://www.npmjs.com/~hafiz-ahmed)",
     "Will Barrett <barrett.william@gmail.com> (https://www.npmjs.com/~willbarrett)",
     "Seth <seth.william.herr@gmail.com> (https://www.npmjs.com/~sethherr)"
   ],
