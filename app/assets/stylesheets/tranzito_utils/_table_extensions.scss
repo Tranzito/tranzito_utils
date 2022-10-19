@@ -1,11 +1,59 @@
-// Some tables have skip-user as an option. Because of caching, we always want the same columns
-// So include the user and hide it the class is enabled
-.skip-user .user-cell,
-.skip-parking-location .parking-location-cell {
-  display: none;
+// Equivalent to: .table.table-striped.table-bordered.table-sm
+// Including in a mixin because otherwise it overrides table styles everywhere when tranzito_utils.css is imported
+@mixin bootstrap-table-sm-striped-bordered {
+  //
+  // .table
+  //
+  width: 100%;
+  margin-bottom: $spacer;
+  color: $table-color;
+  background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+  th,
+  td {
+    padding: $table-cell-padding;
+    vertical-align: top;
+    border-top: $table-border-width solid $table-border-color;
+  }
+  thead th {
+    vertical-align: bottom;
+    border-bottom: (2 * $table-border-width) solid $table-border-color;
+  }
+  tbody + tbody {
+    border-top: (2 * $table-border-width) solid $table-border-color;
+  }
+
+  //
+  // .table-sm
+  //
+  th,
+  td {
+    padding: $table-cell-padding-sm;
+  }
+
+  //
+  // .table-bordered
+  //
+  border: $table-border-width solid $table-border-color;
+  th,
+  td {
+    border: $table-border-width solid $table-border-color;
+  }
+  thead {
+    th,
+    td {
+      border-bottom-width: 2 * $table-border-width;
+    }
+  }
+
+  //
+  // .table-striped
+  //
+  tbody tr:nth-of-type(#{$table-striped-order}) {
+    background-color: $table-accent-bg;
+  }
 }
 
-// ^ is bikehub unique styles, the following is shared with Bike Index
+// ^ Bootstrap styles that are imported
 
 // Full screen table stuff
 @mixin full-screen-table-overflown {
@@ -42,10 +90,7 @@
 }
 
 .table-list {
-  // @extend .table;
-  // @extend .table-striped;
-  // @extend .table-bordered;
-  // @extend .table-sm;
+  @include bootstrap-table-sm-striped-bordered;
   tr td {
     line-height: 1.5;
     &:first-child {
