@@ -1,5 +1,43 @@
+// Equivalent to: .nav.nav-pills
+// Including in a mixin because otherwise it overrides nav styles everywhere when tranzito_utils.css is imported
+@mixin bootstrap-nav-pills {
+  //
+  // .nav
+  //
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  //
+  // .nav-pills
+  //
+  .nav-link {
+    @include border-radius($nav-pills-border-radius);
+  }
+
+  .nav-link.active,
+  .show > .nav-link {
+    color: $nav-pills-link-active-color;
+    background-color: $nav-pills-link-active-bg;
+  }
+}
+
+// Equivalent to .col-12
+@mixin bootstrap-col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+// ^ Bootstrap styles that are imported as mixins to avoid polluting general styles
+
 .admin-header {
-  @extend .clearfix;
+  @include clearfix;
   margin-bottom: 1rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #bdbdbd;
@@ -24,9 +62,8 @@
     }
   }
   ul {
-    @extend .nav;
-    @extend .nav-pills;
-    @extend .justify-content-end;
+    @include bootstrap-nav-pills;
+    justify-content: flex-end;
 
     // On small screens, make nav links align left
     @include media-breakpoint-down(sm) {
@@ -42,8 +79,8 @@
     }
   }
   .subtitle {
-    @extend .mt-4;
-    @extend .col-12;
+    @include bootstrap-col-12;
+    margin-top: 1.5rem !important;
   }
 }
 
@@ -54,7 +91,9 @@
 
 // Because we want it to break on small screens
 .header-sublink {
-  @extend .float-md-right !optional;
+  @include media-breakpoint-up(md) {
+    float: right;
+  }
 }
 
 // Because otherwise they overflow the right side of the screen

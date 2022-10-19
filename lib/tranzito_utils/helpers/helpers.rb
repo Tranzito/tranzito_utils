@@ -55,6 +55,16 @@ module TranzitoUtils
       CodeRay.scan(JSON.pretty_generate(data), :json).div.html_safe
     end
 
+    def alert_class_for_flash(flash_type)
+      case flash_type
+      when "error" then "alert-danger"
+      when "alert" then "alert-warning"
+      when "notice" then "alert-info"
+      else
+        "alert-#{flash_type}"
+      end
+    end
+
     private
 
     def default_action_name_title
