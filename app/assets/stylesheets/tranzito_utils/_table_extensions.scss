@@ -53,7 +53,7 @@
   }
 }
 
-// ^ Bootstrap styles that are imported
+// ^ Bootstrap styles that are imported as mixins to avoid polluting general styles
 
 // Full screen table stuff
 @mixin full-screen-table-overflown {

@@ -24,7 +24,7 @@
 .gray-link {
   a,
   & {
-    color: #6c757d !important; // bootstrap $gray-600
+    color: $gray-600 !important;
     opacity: 0.65;
     text-decoration: underline;
   }
