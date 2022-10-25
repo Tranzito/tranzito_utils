@@ -295,6 +295,9 @@ table .table-cell-check {
 table code {
   word-break: break-all;
 }
+table code.no-break {
+  word-break: normal;
+}
 table .data-cell pre {
   padding: 0.25rem 0.5rem;
   margin: 0 0 0.5rem;
