@@ -16,10 +16,10 @@ module TranzitoUtils
       return title unless render_sortable
 
       html_options[:class] = "#{html_options[:class]} sortable-link"
-      direction = column == sort_column && sort_direction == "desc" ? "asc" : "desc"
+      direction = (column == sort_column && sort_direction == "desc") ? "asc" : "desc"
       if column == sort_column
         html_options[:class] += " active"
-        span_content = direction == "asc" ? "\u2193" : "\u2191"
+        span_content = (direction == "asc") ? "\u2193" : "\u2191"
       end
 
       link_to(sortable_search_params.merge(sort: column, direction: direction), html_options) do

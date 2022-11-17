@@ -72,7 +72,7 @@ module TranzitoUtils
         # Take up less space for admin
         return in_admin? ? nil : "Display"
       end
-      action_name == "index" ? nil : action_name.titleize
+      (action_name == "index") ? nil : action_name.titleize
     end
 
     def controller_title_for_action
