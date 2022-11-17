@@ -54,7 +54,7 @@ module TranzitoUtils
 
     # Accepts a time object, rounds to minutes
     def self.round(time, unit = "minute")
-      unit == "second" ? time.change(usec: 0, sec: 0) : time.change(min: 0, usec: 0, sec: 0)
+      (unit == "second") ? time.change(usec: 0, sec: 0) : time.change(min: 0, usec: 0, sec: 0)
     end
   end
 end
