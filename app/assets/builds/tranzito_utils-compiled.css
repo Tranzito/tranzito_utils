@@ -142,7 +142,7 @@ input[type=radio] {
   max-width: 100%;
   vertical-align: middle;
 }
-.custom-time-selection .btn-success {
+.custom-time-selection #updatePeriodSelectCustom {
   margin-right: 15px;
 }
 .custom-time-selection .end-time-control {
