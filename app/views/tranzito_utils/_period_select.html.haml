@@ -1,45 +1,9 @@
 - skip_submission ||= false
 - include_future ||= false
 - prepend_text ||= nil
+- dropdown ||= false
 
-#timeSelectionBtnGroup.text-right{ role: "group", class: (@period == "custom" ? "custom-period-selected" : ""), "data-nosubmit" => "#{skip_submission}" }
-  - if prepend_text.present?
-    %span.mr-2.less-strong.d-block.d-lg-inline-block
-      = prepend_text
-
-  - if include_future
-    %a.btn.btn-secondary.btn-sm.period-select-standard{ href: url_for(sortable_search_params.merge(period: "next_week")), class: ("active" if @period == "next_week"), data: { period: "next_week" } }
-      %span.d-none.d-md-inline-block next
-      seven days
-    %a.btn.btn-secondary.btn-sm.period-select-standard{ href: url_for(sortable_search_params.merge(period: "next_month")), class: ("active" if @period == "next_month"), data: { period: "next_month" } }
-      %span.d-none.d-md-inline-block next
-      thirty days
-  %a.btn.btn-secondary.btn-sm.period-select-standard{ href: url_for(sortable_search_params.merge(period: "hour")), class: ("active" if @period == "hour"), data: { period: "hour" } }
-    %span.d-none.d-md-inline-block past
-    hour
-  %a.btn.btn-secondary.btn-sm.period-select-standard{ href: url_for(sortable_search_params.merge(period: "day")), class: ("active" if @period == "day"), data: { period: "day" } }
-    %span.d-none.d-md-inline-block past
-    day
-  %a.btn.btn-secondary.btn-sm.period-select-standard{ href: url_for(sortable_search_params.merge(period: "week")), class: ("active" if @period == "week"), data: { period: "week" } }
-    %span.d-none.d-md-inline-block past
-    seven days
-  %a.btn.btn-secondary.btn-sm.period-select-standard{ href: url_for(sortable_search_params.merge(period: "month")), class: ("active" if @period == "month"), data: { period: "month" } }
-    %span.d-none.d-md-inline-block past
-    thirty days
-  %a.btn.btn-secondary.btn-sm.period-select-standard{ href: url_for(sortable_search_params.merge(period: "year")), class: ("active" if @period == "year"), data: { period: "year" } }
-    %span.d-none.d-md-inline-block past
-    year
-  %a.btn.btn-secondary.btn-sm.period-select-standard{ href: url_for(sortable_search_params.merge(period: "all")), class: ("active" if @period == "all"), data: { period: "all" } }
-    all
-  %button#periodSelectCustom.btn.btn-secondary.btn-sm.ml-2{ class: ("active" if @period == "custom"), data: { period: "custom" } }
-    custom
-
-%form#timeSelectionCustom.custom-time-selection.row.mt-2.collapse{ class: @period == "custom" ? "in show" : "" }
-  .form-group
-    = label_tag :start_time_selector, "from", class: "control-label mr-2"
-    = datetime_local_field_tag :start_time_selector, @start_time.strftime("%Y-%m-%dT%H:%M"), step: 60, class: "form-control"
-  .form-group.end-time-control
-    = label_tag :end_time_selector, "to", class: "control-label mr-2 ml-2"
-    = datetime_local_field_tag :end_time_selector, @end_time.strftime("%Y-%m-%dT%H:%M"), step: 60, class: "form-control"
-  %button#updatePeriodSelectCustom.btn.btn-primary.btn-sm.ml-2
-    update
+- if dropdown
+  = render 'tranzito_utils/period_select_dropdown'
+- else
+  = render 'tranzito_utils/period_select_list', skip_submission: skip_submission, include_future: include_future, prepend_text: prepend_text

@@ -65,6 +65,21 @@ module TranzitoUtils
       end
     end
 
+    def set_period_dropdown(period)
+      periods = {
+        hour: "past hour",
+        day: "past day",
+        month: "past thirty days",
+        year: "past year",
+        week: "past seven days",
+        next_month: "next thirty days",
+        next_week: "next seven days",
+        all: "All Time",
+        custom: @start_time.strftime("%Y/%m/%d") + " ~ " + @end_time.strftime("%Y/%m/%d")
+      }
+      periods[period.to_sym] || periods[:all]
+    end
+
     private
 
     def default_action_name_title
