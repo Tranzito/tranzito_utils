@@ -3,34 +3,34 @@
     = set_period_dropdown(@period)
     = inline_svg_tag "icons/dropdown.svg"
   #periodSelectDropdownMenu.dropdown-menu.hidden.text-left
-    .dropdown-item
+    .dropdown-item{class: ("active" if @period == "all")}
       %a{ href: url_for(sortable_search_params.merge(period: "all")), data: { period: "all" } }
         All Time
-    .dropdown-item
+    .dropdown-item{class: ("active" if @period == "hour")}
       %a{ href: url_for(sortable_search_params.merge(period: "hour")), data: { period: "hour" } }
         %span.d-none.d-md-inline-block past
         hour
-    .dropdown-item
+    .dropdown-item{class: ("active" if @period == "day")}
       %a{ href: url_for(sortable_search_params.merge(period: "day")), data: { period: "day" } }
         %span.d-none.d-md-inline-block past
         day
-    .dropdown-item
+    .dropdown-item{class: ("active" if @period == "week")}
       %a{ href: url_for(sortable_search_params.merge(period: "week")), data: { period: "week" } }
         %span.d-none.d-md-inline-block past
         seven days
-    .dropdown-item
+    .dropdown-item{class: ("active" if @period == "month")}
       %a{ href: url_for(sortable_search_params.merge(period: "month")), data: { period: "month" } }
         %span.d-none.d-md-inline-block past
         thirty days
-    .dropdown-item
+    .dropdown-item{class: ("active" if @period == "year")}
       %a{ href: url_for(sortable_search_params.merge(period: "year")), data: { period: "year" } }
         %span.d-none.d-md-inline-block past
         year
-    .dropdown-item
+    .dropdown-item{class: ("active" if @period == "custom")}
       %button#showDateField{ data: { period: "custom" }}
         custom
 
 %form#dropdownCustomSelectionForm
-  = hidden_field_tag :start_time_selector, ""
-  = hidden_field_tag :end_time_selector, ""
+  = hidden_field_tag :start_time_selector, @start_time.strftime("%Y-%m-%d")
+  = hidden_field_tag :end_time_selector, @end_time.strftime("%Y-%m-%d")
   %input#customPeriodSelectDatePicker.hidden{type: "text"}

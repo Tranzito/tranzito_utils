@@ -67,11 +67,11 @@ module TranzitoUtils
 
     def set_period_dropdown(period)
       periods = {
-        hour: "past hour",
-        day: "past day",
-        month: "past thirty days",
-        year: "past year",
-        week: "past seven days",
+        hour: "Past hour",
+        day: "Past day",
+        month: "Past thirty days",
+        year: "Past year",
+        week: "Past seven days",
         next_month: "next thirty days",
         next_week: "next seven days",
         all: "All Time",
