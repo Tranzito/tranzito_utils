@@ -19,7 +19,7 @@ class DropdownPeriodSelector {
   enablePeriodSelection () {
     document.querySelectorAll('#periodSelectDropdown .dropdown-item a').forEach((dropdwonLink) => {
       dropdwonLink.addEventListener('click', (e) => {
-        if(dropdwonLink.attributes['data-period'].value == 'custom') e.preventDefault()
+        if (dropdwonLink.attributes['data-period'].value === 'custom') e.preventDefault()
 
         document.querySelector('#periodSelectDropdown .dropdown-item a.active').classList.remove('active')
         e.currentTarget.classList.add('active')
@@ -36,7 +36,7 @@ class DropdownPeriodSelector {
       defaultDate: [startDate, endDate],
       dateFormat: 'Y-m-d',
       disable: [(date) => date >= new Date()],
-      onValueUpdate: (selectedDates, dateStr, instance) => this.updateCustomDatePicker(selectedDates),
+      onValueUpdate: (selectedDates, dateStr, instance) => this.updateCustomDatePicker(selectedDates)
     }).open()
     document.getElementsByClassName('flatpickr-calendar')[0].classList.remove('arrowTop')
   }
