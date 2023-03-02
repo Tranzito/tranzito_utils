@@ -1,7 +1,7 @@
 #periodSelectDropdown
   .dropdown
     %button.btn.btn-secondary.periodSelectDropdownToggler{"data-dropdown-toggle" => "periodSelectDropdownMenu", type: "button"}
-      = set_period_dropdown(@period)
+      = set_active_period(@period)
       = inline_svg_tag "dropdown.svg"
     #periodSelectDropdownMenu.dropdown-menu.hidden.text-left
       .dropdown-item{ class: ("active" if @period == "all") }

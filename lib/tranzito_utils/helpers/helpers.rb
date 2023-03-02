@@ -65,7 +65,7 @@ module TranzitoUtils
       end
     end
 
-    def set_period_dropdown(period)
+    def set_active_period(period)
       periods = {
         hour: "Past hour",
         day: "Past day",
