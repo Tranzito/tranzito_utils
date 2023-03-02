@@ -9,7 +9,7 @@ class DropdownPeriodSelector {
   initDropdownPeriodSelector () {
     document.getElementById('periodSelectDropdown')
       .addEventListener('click', () => {
-        const selectedPeriod = document.querySelector('#periodSelectDropdown .dropdown-item a.active')
+        const selectedPeriod = document.querySelector('#periodSelectDropdown .dropdown-item.active a')
           .attributes['data-period'].value
         if (selectedPeriod === 'custom') this.initCustomPeriodSelector()
       })
@@ -17,11 +17,11 @@ class DropdownPeriodSelector {
   }
 
   enablePeriodSelection () {
-    document.querySelectorAll('#periodSelectDropdown .dropdown-item a').forEach((dropdwonLink) => {
+    document.querySelectorAll('#periodSelectDropdown .dropdown-item').forEach((dropdwonLink) => {
       dropdwonLink.addEventListener('click', (e) => {
-        if (dropdwonLink.attributes['data-period'].value === 'custom') e.preventDefault()
+        if (dropdwonLink.children[0].attributes['data-period'].value === 'custom') e.preventDefault()
 
-        document.querySelector('#periodSelectDropdown .dropdown-item a.active').classList.remove('active')
+        document.querySelector('#periodSelectDropdown .dropdown-item.active').classList.remove('active')
         e.currentTarget.classList.add('active')
       })
     })
@@ -36,9 +36,9 @@ class DropdownPeriodSelector {
       defaultDate: [startDate, endDate],
       dateFormat: 'Y-m-d',
       disable: [(date) => date >= new Date()],
+      static: true,
       onValueUpdate: (selectedDates, dateStr, instance) => this.updateCustomDatePicker(selectedDates)
     }).open()
-    document.getElementsByClassName('flatpickr-calendar')[0].classList.remove('arrowTop')
   }
 
   updateCustomDatePicker (datesArr) {
