@@ -65,6 +65,21 @@ module TranzitoUtils
       end
     end
 
+    def set_active_period(period)
+      periods = {
+        hour: "Past hour",
+        day: "Past day",
+        month: "Past thirty days",
+        year: "Past year",
+        week: "Past seven days",
+        next_month: "next thirty days",
+        next_week: "next seven days",
+        all: "All Time",
+        custom: @start_time.strftime("%Y/%m/%d") + " ~ " + @end_time.strftime("%Y/%m/%d")
+      }
+      periods[period.to_sym] || periods[:all]
+    end
+
     private
 
     def default_action_name_title

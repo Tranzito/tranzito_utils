@@ -1,0 +1,26 @@
+#periodSelectDropdown
+  .dropdown
+    %button.btn.btn-secondary#periodSelectDropdownButton{type: "button"}
+      = set_active_period(@period)
+      = inline_svg_tag "dropdown.svg"
+    #periodSelectDropdownMenu.dropdown-menu.hidden.text-left
+      .dropdown-item{ class: ("active" if @period == "all") }
+        = link_to "All Time", url_for(sortable_search_params.merge(period: "all")), data: { period: "all" }
+      .dropdown-item{ class: ("active" if @period == "hour")}
+        = link_to "Past hour", url_for(sortable_search_params.merge(period: "hour")), data: { period: "hour" }
+      .dropdown-item{ class: ("active" if @period == "day")}
+        = link_to "Past day", url_for(sortable_search_params.merge(period: "day")), data: { period: "day" }
+      .dropdown-item{ class: ("active" if @period == "week")}
+        = link_to "Past seven days", url_for(sortable_search_params.merge(period: "week")), data: { period: "week" }
+      .dropdown-item{ class: ("active" if @period == "month")}
+        = link_to "Past thirty days", url_for(sortable_search_params.merge(period: "month")), data: { period: "month" }
+      .dropdown-item{ class: ("active" if @period == "year")}
+        = link_to "Past year", url_for(sortable_search_params.merge(period: "year")), data: { period: "year" }
+      .dropdown-item{ class: ("active" if @period == "custom")}
+        %a#showDateField{ href: "", data: { period: "custom" }}
+          Custom date range
+
+  %form#dropdownCustomSelectionForm
+    = hidden_field_tag :start_time_selector, (@period == "custom" ? @start_time : Date.today).strftime("%Y-%m-%d")
+    = hidden_field_tag :end_time_selector, (@period == "custom" ? @end_time : Date.today).strftime("%Y-%m-%d")
+    %input#customPeriodSelectDatePicker.hidden{type: "text"}

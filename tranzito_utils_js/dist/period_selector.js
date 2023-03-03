@@ -1,36 +1,10 @@
+import { urlForPeriod } from '../utils/period_select'
 class PeriodSelector {
   init () {
     this.autoSubmit = !(
       document.getElementById('timeSelectionBtnGroup').attributes['data-nosubmit']?.value === 'true'
     )
     this.enablePeriodSelection()
-  }
-
-  urlParamsWithoutPeriod () {
-    const urlParams = new URLSearchParams(window.location.search)
-    urlParams.delete('period')
-    urlParams.delete('timezone')
-    urlParams.delete('start_time')
-    urlParams.delete('end_time')
-    urlParams.append('timezone', window.localTimezone)
-    return urlParams
-  }
-
-  urlParamsWithNewPeriod (selectedPeriod = null) {
-    // If it's null, empty, undefined or anything other than string
-    if (typeof selectedPeriod !== 'string') {
-      // If not passed the period, Figure it out, defaulting to all
-      selectedPeriod = document.querySelector('#timeSelectionBtnGroup .btn.active').attributes['data-period']?.value || 'all'
-    }
-
-    const urlParams = this.urlParamsWithoutPeriod()
-    urlParams.append('period', selectedPeriod)
-
-    if (selectedPeriod === 'custom') {
-      urlParams.append('start_time', document.getElementById('start_time_selector').value)
-      urlParams.append('end_time', document.getElementById('end_time_selector').value)
-    }
-    return urlParams
   }
 
   enableCustomSelection () {
@@ -50,10 +24,6 @@ class PeriodSelector {
     document.getElementById('timeSelectionCustom').classList.remove('in')
     document.getElementById('timeSelectionCustom').style.display = 'none'
     document.getElementById('timeSelectionBtnGroup').classList.remove('custom-period-selected')
-  }
-
-  urlForPeriod (selectedPeriod = null) {
-    return window.location.origin + location.pathname + '?' + this.urlParamsWithNewPeriod(selectedPeriod).toString()
   }
 
   enablePeriodSelection () {
@@ -97,7 +67,7 @@ class PeriodSelector {
       document
         .getElementById('timeSelectionCustom')
         .addEventListener('submit', (e) => {
-          location.href = self.urlForPeriod('custom')
+          location.href = urlForPeriod('custom')
           return false
         })
     }
