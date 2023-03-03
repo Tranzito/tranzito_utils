@@ -53,11 +53,22 @@
 }
 
 #periodSelectDropdown {
-  .periodSelectDropdownToggler {
+  #periodSelectDropdownButton {
     svg {
       width: 16px;
       margin-left: 4px;
     }
   }
   display: flex;
+
+  .dropdown-menu {
+    position: absolute;
+    display: none;
+  }
+
+  .rotate-icon {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
 }

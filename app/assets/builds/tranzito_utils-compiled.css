@@ -1077,9 +1077,16 @@ input[type=radio] {
 #periodSelectDropdown {
   display: flex;
 }
-#periodSelectDropdown .periodSelectDropdownToggler svg {
+#periodSelectDropdown #periodSelectDropdownButton svg {
   width: 16px;
   margin-left: 4px;
+}
+#periodSelectDropdown .dropdown-menu {
+  position: absolute;
+  display: none;
+}
+#periodSelectDropdown .rotate-icon svg {
+  transform: rotate(180deg);
 }
 
 .full-screen-table-overflown {
