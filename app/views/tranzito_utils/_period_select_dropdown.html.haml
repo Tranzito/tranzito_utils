@@ -20,7 +20,7 @@
         %a#showDateField{ href: "", data: { period: "custom" }}
           Custom date range
 
-  %form#dropdownCustomSelectionForm
-    = hidden_field_tag :start_time_selector, (@period == "custom" ? @start_time : Date.today).strftime("%Y-%m-%d")
-    = hidden_field_tag :end_time_selector, (@period == "custom" ? @end_time : Date.today).strftime("%Y-%m-%d")
-    %input#customPeriodSelectDatePicker.hidden{type: "text"}
+%form#dropdownCustomSelectionForm
+  = hidden_field_tag :start_time_selector, (@period == "custom" ? @start_time : Date.today).strftime("%Y-%m-%d")
+  = hidden_field_tag :end_time_selector, (@period == "custom" ? @end_time : Date.today).strftime("%Y-%m-%d")
+  %input#customPeriodSelectDatePicker.hidden{type: "text"}

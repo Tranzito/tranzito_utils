@@ -42,6 +42,7 @@ class DropdownPeriodSelector {
 
     flatpickr('#customPeriodSelectDatePicker', {
       mode: 'range',
+      appendTo: document.getElementById('dropdownCustomSelectionForm'),
       defaultDate: [startDate, endDate],
       dateFormat: 'Y-m-d',
       disable: [(date) => date >= new Date()],
