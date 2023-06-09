@@ -1,5 +1,3 @@
-require "time"
-
 class SolarPositionCalculator
   LATITUDE_RANGE = (-90..90)
   LONGITUDE_RANGE = (-180..180)
@@ -65,7 +63,7 @@ class SolarPositionCalculator
   end
 
   def utc_to_timezone(date, utc_time)
-    response = Time.parse("#{date.year}-#{date.month}-#{date.day}T#{Time.at(utc_time * 60).utc.strftime("%H:%M:%S")}") + timezone * 3600
+    response = Time.parse("#{date} #{Time.at(utc_time * 60).utc.strftime("%H:%M:%S")}") + timezone * 3600
     response.strftime("%H:%M:%S")
   end
 
