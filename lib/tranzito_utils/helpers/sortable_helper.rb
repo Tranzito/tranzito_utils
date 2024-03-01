@@ -29,7 +29,7 @@ module TranzitoUtils
     end
 
     def sortable_search_params
-      search_param_keys = params.keys.select { |k| k.to_s.start_with?(/search_/) }
+      search_param_keys = params.keys.select { |k| k.to_s.start_with?("search_") }
       params.permit(*(DEFAULT_SEARCH_KEYS | TranzitoUtils::DEFAULT[:additional_search_keys] | search_param_keys))
     end
 
