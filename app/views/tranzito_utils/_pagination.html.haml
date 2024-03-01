@@ -3,6 +3,7 @@
 - count ||= defined?(collection.total_count) ? collection.total_count : collection.count
 - skip_total ||= false
 - skip_pagination ||= false
+- paginate_params ||= {}
 -# override added to convert Created to Imported - for clarity in payroll_times
 - humanized_time_range_column_override ||= nil
 
@@ -25,7 +26,7 @@
             = humanized_time_range(@time_range)
   - unless skip_pagination
     .pagination-flex.justify-content-md-end{class: (skip_total ? "col-12" : "col-md-7")}
-      = paginate collection, outer_window: 1
+      = paginate collection, outer_window: 1, params: paginate_params
       - if count > @per_page.to_i
         - per_pages = [10, 25, 50, 100, @per_page.to_i].uniq.sort
         = select_tag :per_page_select, options_for_select(per_pages.map { |i| ["#{i} / page", i] }, selected: @per_page), { class: "form-control per-page-select" }
