@@ -9,9 +9,12 @@ class DropdownPeriodSelector {
 
   enableDropdown () {
     const dropdown = document.getElementById('periodSelectDropdownButton')
+    const menu = document.getElementById('periodSelectDropdownMenu')
+
     dropdown.addEventListener('click', () => {
-      document.getElementById('periodSelectDropdownMenu').style.display = 'block'
-      dropdown.classList.add('rotate-icon')
+      const isHidden = menu.style.display === 'none' || !menu.style.display
+      menu.style.display = isHidden ? 'block' : 'none'
+      dropdown.classList.toggle('rotate-icon', isHidden)
     })
   }
 
@@ -26,12 +29,15 @@ class DropdownPeriodSelector {
   }
 
   enablePeriodSelection () {
+    const menu = document.getElementById('periodSelectDropdownMenu')
     document.querySelectorAll('#periodSelectDropdown .dropdown-item').forEach((dropdownLink) => {
       dropdownLink.addEventListener('click', (e) => {
         if (dropdownLink.children[0].attributes['data-period'].value === 'custom') e.preventDefault()
 
         document.querySelector('#periodSelectDropdown .dropdown-item.active').classList.remove('active')
         e.currentTarget.classList.add('active')
+        menu.style.display = 'none'
+        document.getElementById('periodSelectDropdownButton').classList.remove('rotate-icon')
       })
     })
   }
