@@ -1,0 +1,152 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  RAILS_ENV: test
+  RACK_ENV: test
+  PGHOST: 127.0.0.1
+  PGUSER: root
+  PSQL_PAGER: ""
+
+jobs:
+  lint:
+    name: Lint (Ruby & JS)
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.5
+          bundler-cache: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Yarn install
+        working-directory: tranzito_utils_js
+        run: yarn install
+
+      - name: Ruby and JS lint check
+        env:
+          LINT_TEST: "true"
+        run: bin/lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+
+    services:
+      postgres:
+        image: postgis/postgis:13-3.3
+        env:
+          POSTGRES_USER: root
+          POSTGRES_DB: tranzito_utils_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U root"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system libraries
+        run: sudo apt-get update && sudo apt-get -y install postgresql-client
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.5
+          bundler-cache: true
+
+      - name: Setup database
+        working-directory: spec/dummy
+        run: bundle exec rails db:create db:schema:load
+
+      - name: RSpec
+        run: |
+          mkdir -p test-results/rspec test-artifacts
+          bundle exec rspec --profile 10 \
+                            --color \
+                            --order random \
+                            --format RspecJunitFormatter \
+                            --out test-results/rspec/rspec.xml \
+                            --format progress
+
+      - name: Build gem
+        run: |
+          export GIT_VERSION=$(git describe --always --tags --match "release-*")
+          echo "Building Gem from version ${GIT_VERSION}"
+          gem build tranzito_utils.gemspec | tee gem.build.output
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results
+          if-no-files-found: ignore
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: test-artifacts
+          if-no-files-found: ignore
+
+  javascript:
+    name: Jest
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Yarn install
+        working-directory: tranzito_utils_js
+        run: yarn install
+
+      - name: Jest
+        working-directory: tranzito_utils_js
+        env:
+          JEST_JUNIT_OUTPUT_DIR: "test-results/junit/"
+        run: |
+          mkdir -p test-results/junit
+          yarn test --ci --runInBand --reporters=default --reporters=jest-junit
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: js-test-results
+          path: tranzito_utils_js/test-results
+          if-no-files-found: ignore
