@@ -73,9 +73,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install system libraries
-        run: sudo apt-get update && sudo apt-get -y install postgresql-client
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
